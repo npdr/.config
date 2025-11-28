@@ -19,19 +19,37 @@ map({ "n", "x" }, "<leader>y", '"+y')
 map({ "n", "x" }, "<leader>d", '"+d')
 
 vim.pack.add{
-  { src = 'https://github.com/neovim/nvim-lspconfig'},
+	{ src = 'https://github.com/neovim/nvim-lspconfig'},
 	{ src = "https://github.com/vague2k/vague.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
+	{ src = "https://github.com/mason-org/mason.nvim" },
 }
 
+local telescope = require("telescope")
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>p', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
-require("vague").setup()
-vim.cmd("colorscheme vague")
+telescope.setup({
+	pickers = {
+		live_grep = {
+			file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+			additional_args = function(_)
+				return { "--hidden" }
+			end
+		},
+		find_files = {
+			file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+			hidden = true
+		}	},
+	})
 
-vim.lsp.enable({"lua_ls"})
+	vim.keymap.set('n', '<leader>p', builtin.find_files, { desc = 'Telescope find files' })
+	vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+	vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+	vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+
+	require("vague").setup()
+	vim.cmd("colorscheme vague")
+
+	require("mason").setup()
+	vim.lsp.enable({"lua_ls", "solargraph", "ts_ls"})
