@@ -10,7 +10,6 @@ return {
 		"hrsh7th/nvim-cmp",
 		"L3MON4D3/LuaSnip",
 		"saadparwaiz1/cmp_luasnip",
-		"j-hui/fidget.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 
@@ -31,7 +30,6 @@ return {
 
 			-- Info
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-			vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 
 			-- Actions
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
@@ -73,13 +71,17 @@ return {
 			},
 		})
 
+		local mason_root = require("mason.settings").current.install_root_dir
+
 		vim.lsp.config("roslyn", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 			settings = {
-				["csharp|inlay_hints"] = {
-					csharp_enable_inlay_hints_for_implicit_object_creation = true,
-					csharp_enable_inlay_hints_for_implicit_variable_types = true,
+				["csharp|completion"] = {
+					dotnet_show_completion_items_from_unimported_namespaces = true
+				},
+				["csharp|symbol_search"] = {
+					dotnet_search_reference_assemblies = true
 				},
 				["csharp|code_lens"] = {
 					dotnet_enable_references_code_lens = true,
@@ -87,26 +89,21 @@ return {
 			},
 		})
 
-		require("fidget").setup({})
-
 		require("mason").setup({
 			registries = { -- adding this because of roslyn reasons
 				"github:mason-org/mason-registry",
 				"github:Crashdummyy/mason-registry",
 			},
 		})
+
 		require("mason-tool-installer").setup({
 			ensure_installed = {
 				"lua_ls",
-				"ts_ls",
-				"ruby_lsp",
-				"xmlformatter",
 				"csharpier",
-				"prettier",
 				"stylua",
 				"html-lsp",
 				"css-lsp",
-				"eslint-lsp",
+				"roslyn",
 			},
 		})
 

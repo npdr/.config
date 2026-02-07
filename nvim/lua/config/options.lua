@@ -7,6 +7,10 @@ vim.o.shiftwidth = 4
 vim.o.ttyfast = true
 vim.o.tabstop = 4
 vim.o.winborder = "rounded"
+vim.opt.relativenumber = true
+vim.opt.scrolloff = 10
+vim.opt.numberwidth = 5
+vim.o.scroll = 15
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
