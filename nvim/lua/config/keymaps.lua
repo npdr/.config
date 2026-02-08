@@ -1,9 +1,10 @@
 local map = vim.keymap.set
 vim.g.mapleader = " "
 
-map("n", "<leader>e", ":Ex<CR>")
+map("n", "<leader>e", "<cmd>Oil<CR>", opts)
 map("n", "<leader>w", "<cmd>update<cr>")
 map("n", "<leader>q", ":quit<cr>")
+map("n", "<Esc>", ":noh<CR>")
 map("n", "<leader>w", "<cmd>update<cr>")
 map("n", "<leader>ch", "<cmd>checkhealth<cr>")
 map("n", "<leader>L", "<cmd>Lazy<cr>")
@@ -21,7 +22,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
-map("n", "<leader>nn", function() --toggle relative vs absolute line numbers
+map("n", "<leader>rl", function() --toggle relative vs absolute line numbers
 	if vim.wo.relativenumber then
 		vim.wo.relativenumber = false
 		vim.wo.number = true
