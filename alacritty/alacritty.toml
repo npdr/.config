@@ -1,0 +1,41 @@
+# terminal.shell = "wsl -d archlinux --cd ~"
+[terminal.shell]
+program = "wsl -d archlinux --cd ~"
+
+[window]
+startup_mode = "Fullscreen"
+decorations = "none"
+padding = { x = 10, y = 10 }
+dynamic_padding = true
+dynamic_title = true
+opacity = 0.9
+blur = true
+
+[font]
+size = 12
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Bold Italic"
+
+[general]
+import = [
+  "C:\\Users\\PedroNieuwenhoff\\AppData\\Roaming\\alacritty\\./themes/themes/hyper.toml"
+]
+
+[env]
+TERM = "xterm-256color"
+LANG = "en_US.UTF-8"

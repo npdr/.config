@@ -10,11 +10,13 @@
 --     vim.cmd("colorscheme vague")
 --   end
 -- }
+
 return {
 	"Mofiqul/vscode.nvim",
 	config = function()
 		require("vscode").setup({
 			italic_comments = true,
+			transparent = true,
 		})
 		vim.cmd("colorscheme vscode")
 	end
