@@ -9,13 +9,13 @@ return {
 		telescope.setup({
 			pickers = {
 				live_grep = {
-					file_ignore_patterns = { "node_modules", ".git", ".venv" },
+					file_ignore_patterns = { "node_modules", ".venv" },
 					additional_args = function(_)
 						return { "--hidden" }
 					end,
 				},
 				find_files = {
-					file_ignore_patterns = { "node_modules", ".git", ".venv" },
+					file_ignore_patterns = { "node_modules", ".venv" },
 					hidden = true,
 				},
 				diagnostics = {

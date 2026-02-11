@@ -12,6 +12,8 @@ vim.opt.scrolloff = 10
 vim.opt.numberwidth = 5
 vim.o.scroll = 15
 
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
+-- vim.g.netrw_browse_split = 0
+-- vim.g.netrw_banner = 0
+-- vim.g.netrw_winsize = 25
+
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })

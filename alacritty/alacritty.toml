@@ -3,13 +3,12 @@
 program = "wsl -d archlinux --cd ~"
 
 [window]
-startup_mode = "Fullscreen"
+startup_mode = "Maximized"
 decorations = "none"
 padding = { x = 10, y = 10 }
 dynamic_padding = true
 dynamic_title = true
-opacity = 0.9
-blur = true
+opacity = 0.95
 
 [font]
 size = 12
