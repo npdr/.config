@@ -6,10 +6,10 @@ return {
   require'nvim-treesitter'.setup {
   }
 
-	require'nvim-treesitter'.install {  'c_sharp', 'razor', 'html' }
+	require'nvim-treesitter'.install {  'c_sharp', 'razor', 'html', 'svelte', 'typescript' }
 
   vim.api.nvim_create_autocmd('FileType', {
-    pattern = {  'c_sharp', 'razor', 'html' },
+    pattern = {  'c_sharp', 'razor', 'html', 'svelte', 'typescript' },
     callback = function()
       vim.treesitter.start()
       -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'

@@ -14,7 +14,21 @@ return {
 	},
 
 	config = function()
-		local function on_attach(_, bufnr)
+		local function on_attach(client, bufnr)
+			local ft = vim.bo[bufnr].filetype
+
+			-- razor freezing fix
+			if client.name == "roslyn" and ft == "razor" then
+				client.server_capabilities.semanticTokensProvider = nil
+
+				local cmp = require("cmp")
+				cmp.setup.buffer({
+					completion = {
+						autocomplete = false,
+					},
+				})
+			end
+
 			local opts = { buffer = bufnr, silent = true }
 			local telescope = require("telescope.builtin")
 
@@ -89,6 +103,26 @@ return {
 			},
 		})
 
+		vim.lsp.config("vtsls", {
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+		vim.lsp.enable("vtsls")
+
+		vim.lsp.config("tailwindcss-language-server", {
+			capabilities = capabilities,
+			on_attach = on_attach,
+			filetypes = {"svelte"}
+		})
+		vim.lsp.enable("tailwindcss-language-server")
+
+		vim.lsp.config("svelte-language-server", {
+			capabilities = capabilities,
+			on_attach = on_attach,
+			filetypes = {"svelte"}
+		})
+		vim.lsp.enable("svelte-language-server")
+
 		require("mason").setup({
 			registries = { -- adding this because of roslyn reasons
 				"github:mason-org/mason-registry",
@@ -102,8 +136,11 @@ return {
 				"csharpier",
 				"stylua",
 				"html-lsp",
+				"vtsls",
 				"css-lsp",
 				"roslyn",
+				"svelte-language-server",
+				"tailwindcss-language-server",
 			},
 		})
 
@@ -130,8 +167,7 @@ return {
 		})
 
 		vim.diagnostic.config({
-			virtual_text = true,
-			-- update_in_insert = true,
+			update_in_insert = false,
 			float = {
 				focusable = false,
 				style = "minimal",

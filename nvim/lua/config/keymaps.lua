@@ -1,7 +1,8 @@
 local map = vim.keymap.set
 vim.g.mapleader = " "
 
-map("n", "<leader>e", "<cmd>Oil<CR>", opts)
+-- map("n", "<leader>e", "<cmd>Oil<CR>", opts)
+map("n", "<leader>e", "<cmd>:Ex<CR>", opts)
 map("n", "<leader>w", "<cmd>update<cr>")
 map("n", "<leader>q", ":quit<cr>")
 map("n", "<Esc>", ":noh<CR>")
